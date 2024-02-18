@@ -299,6 +299,7 @@ export const abi = [
 ]
 
 export const addresses = {
-    goerli: '0x3AD08C3422D97D5Cf728626d91Ce5f2dB26699a2'
+    5: '0x3AD08C3422D97D5Cf728626d91Ce5f2dB26699a2',
+    43114: "0x39671C62c4b17E555b5Eb65cE1175a4E9D6D6046"
 }
 

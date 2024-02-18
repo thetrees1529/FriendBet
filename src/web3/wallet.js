@@ -1,4 +1,4 @@
-import { createWeb3Modal, defaultConfig, useWeb3ModalAccount, useWeb3ModalProvider } from '@web3modal/ethers/vue'
+import { createWeb3Modal, defaultConfig, useWeb3ModalState, useWeb3ModalProvider } from '@web3modal/ethers/vue'
 import {abi, addresses} from "./contract.js"
 import {ethers} from "ethers"
 const projectId = '859ae4f8954aa5a0c905dfdc08835318'
@@ -21,8 +21,8 @@ const goerli = {
 
 createWeb3Modal({
     ethersConfig: defaultConfig({}),
-    chains: [goerli],
-    defaultChain: goerli,
+    chains: [goerli, avalanche],
+    defaultChain: avalanche,
     projectId,
     enableAnalytics: true // Optional - defaults to your Cloud configuration
 })
@@ -30,5 +30,5 @@ createWeb3Modal({
 export const getContract = async () => {
     const provider = new ethers.BrowserProvider(useWeb3ModalProvider().walletProvider.value)
     const signer = await provider.getSigner()
-    return new ethers.Contract(addresses[(await provider.getNetwork()).name], abi, signer)
+    return new ethers.Contract(addresses[useWeb3ModalState().selectedNetworkId], abi, signer)
 }
