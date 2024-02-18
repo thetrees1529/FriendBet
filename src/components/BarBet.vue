@@ -1,6 +1,12 @@
 <template>
     <div id="main" v-if="canRender" class="box">
         <div>
+            <p>
+                Make a bet, winner takes all. Good luck!
+            </p>
+            <p>
+                Beware of min and max bet and max bets in total as stated in config below.
+            </p>
             <button v-if="!showConfig" @click="showConfig = true">show config</button>
             <div v-else>
                 <button @click="showConfig = false">hide config</button>
@@ -14,13 +20,13 @@
                 </div>
             </div>
             <div v-if="currentSpin">
+                <h2>Current Game</h2>
                 <div v-if="!currentSpin.finalised">
-                    <p v-if="currentSpin.readyToSpin">Ready to <button @click="spin">spin</button></p>
-                    <p v-else-if="!currentSpin.vrfRequested">Ends in {{ currentSpin.endsIn }} secs</p>
-                    <p v-else>Waiting for result... (usually less than 30 secs)</p>
+                <p v-if="currentSpin.readyToSpin">Ready to <button @click="spin">spin</button></p>
+                <p v-else-if="!currentSpin.vrfRequested">Ends in {{ currentSpin.endsIn }} secs</p>
+                <p v-else>Waiting for result... (usually less than 30 secs)</p>
                 </div>
                 <div v-else>Winner found</div>
-                <h2>Current Game</h2>
                 <Spin v-if="currentSpin" :bets="currentSpin.bets" :winnings="currentSpin.winnings"></Spin>
             </div>
             <div v-else>

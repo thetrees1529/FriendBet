@@ -13,7 +13,7 @@
 import { formatUnits, parseEther } from "ethers"
 import { computed, onMounted, ref } from "vue"
 defineProps(["bets", "winnings"])
-const colours = ["blue", "green", "red", "purple", "orange", "yellow", "pink", "brown"]
+const colours = ["blue", "green", "red", "purple", "orange", "pink","aqua",  "brown"]
 
 
 </script>
