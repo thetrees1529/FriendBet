@@ -7,6 +7,9 @@
             <p>
                 Beware of min and max bet and max bets in total as stated in config below.
             </p>
+            <p>
+                When spinning, the small value is the fee to pay for the VRF request. It is overestimated to avoid failing the transaction, but any extra is refunded in the same tx.
+            </p>
             <button v-if="!showConfig" @click="showConfig = true">show config</button>
             <div v-else>
                 <button @click="showConfig = false">hide config</button>
@@ -96,7 +99,7 @@ async function spin() {
         console.log(currentSpin.value)
         const contract = await getContract()
         const {weth} = await contract.quoteVrfRequest()
-        await contract.spin({value: currentSpin.value.bets.length > 1 ? weth * BigInt(2) : BigInt(0), gasLimit: 500000})
+        await contract.spin({value: currentSpin.value.bets.length > 1 ? weth * BigInt(10) : BigInt(0), gasLimit: 500000})
     } catch(e) {
         console.log("failed to spin because", e)
     }
