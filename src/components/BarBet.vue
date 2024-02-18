@@ -12,7 +12,7 @@
                 <button @click="showConfig = false">hide config</button>
                 <h2>Config</h2>
                 <div>
-                    Fee: {{ config.feePercentage }}%
+                    Fee: {{ config.feePercentage }}% <br>
                     Min Bet: {{ formatUnits(config.minBet.toString()) }} <br>
                     Max Bet: {{ formatUnits(config.maxBet.toString()) }} <br>
                     Duration: {{ config.duration }} secs <br>
